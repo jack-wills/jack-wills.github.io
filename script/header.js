@@ -132,7 +132,7 @@ function signInRequest() {
         "password": document.getElementById("signInPassword").value
     };
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://8zu5i8z6q2.execute-api.us-east-1.amazonaws.com/Stage/signin", true);
+    xhttp.open("POST", "https://api.jackwill.me/Stage/signin", true);
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
            // Typical action to be performed when the document is ready:
@@ -159,7 +159,7 @@ function registerRequest() {
         "lastName": document.getElementById("registerLast").value
     };
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://8zu5i8z6q2.execute-api.us-east-1.amazonaws.com/Stage/register", true);
+    xhttp.open("POST", "https://api.jackwill.me/Stage/register", true);
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
            // Typical action to be performed when the document is ready:
