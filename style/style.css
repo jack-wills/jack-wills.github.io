@@ -24,6 +24,7 @@ body {
 	width: 100%;
 	transition: height .7s,line-height .7s;
 	z-index: 100;
+	font-family: "Futura", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
 }
 
 #header.scrolled {

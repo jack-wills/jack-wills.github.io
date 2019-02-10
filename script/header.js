@@ -4,11 +4,11 @@ var headerSource = (
         <div id="header" class="unscrolled">
             <div id="navbar" class="unscrolled">
                 <ul id="leftbar">
-                    <li><a id="home" href="index.html">Home</a></li>
-                    <li><a id="1"href="Page1.html">Page 1</a></li>
-                    <li><a id="2"href="Page2.html">Page 2</a></li>
-                    <li><a id="3"href="Page3.html">Page 3</a></li>
-                    <li><a id="4"href="Page4.html">Page 4</a></li>
+                    <li><a id="home" href="/">Home</a></li>
+                    <li><a id="1"href="Page1">Page 1</a></li>
+                    <li><a id="2"href="Page2">Page 2</a></li>
+                    <li><a id="3"href="Page3">Page 3</a></li>
+                    <li><a id="4"href="Page4">Page 4</a></li>
                 </ul>
                 <div id="rightbar"></div>
             </div>
@@ -74,13 +74,12 @@ function setActiveLink () {
     var links = document.getElementById("leftbar").getElementsByTagName("a");
     for (var i = 0; i < links.length; i++) {
         var link = links[i].getAttribute("href");
-        if (!window.location.href.includes(".html") && link == "index.html") {
+        if(window.location.href.includes(link) && link != '/') {
             links[i].className = "active";
-        }
-        if(window.location.href.includes(link)) {
-            links[i].className = "active";
+            return;
         }
     }
+    document.getElementById('home').className = "active";
 }
 
 function checkScroll() {
@@ -133,11 +132,12 @@ function signInRequest() {
         "password": document.getElementById("signInPassword").value
     };
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "signin", true);
+    xhttp.open("POST", "https://8zu5i8z6q2.execute-api.us-east-1.amazonaws.com/Stage/signin", true);
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
            // Typical action to be performed when the document is ready:
            var response = JSON.parse(xhttp.responseText);
+           console.log(response)
            if (response.auth) {
                 document.getElementById("signinPopup").innerHTML = "<h1>Welcome back " + response.firstName + " " + response.lastName + "</h1>";
            } else {
@@ -159,12 +159,12 @@ function registerRequest() {
         "lastName": document.getElementById("registerLast").value
     };
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "register", true);
+    xhttp.open("POST", "https://8zu5i8z6q2.execute-api.us-east-1.amazonaws.com/Stage/register", true);
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
            // Typical action to be performed when the document is ready:
            var response = JSON.parse(xhttp.responseText);
-           if (response.success) {
+           if (response.jwt) {
             document.getElementById("registerPopup").innerHTML = "<h1>Success!</h1>";
            }
         }
